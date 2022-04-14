@@ -13,6 +13,25 @@ data class Register(
 	val password: String
 )
 
+data class Login(
+	@field:SerializedName("error")
+	val error: Boolean,
+
+	@field:SerializedName("message")
+	val message: String,
+)
+
+data class UserData(
+	@field:SerializedName("userId")
+	val userId: String,
+
+	@field:SerializedName("name")
+	val name: String,
+
+	@field:SerializedName("token")
+	val token: String
+)
+
 data class DicodingStoryResponse(
 
 	@field:SerializedName("listStory")
