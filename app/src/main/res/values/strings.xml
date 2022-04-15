@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">StoryApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="tab_text_1">Login</string>
     <string name="tab_text_2">Register</string>
+    <string name="invalid_password">Password kurang dari 6 characters</string>
+    <string name="invalid_email">format email salah</string>
 </resources>

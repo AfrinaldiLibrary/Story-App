@@ -1,4 +1,4 @@
-package com.example.storyapp
+package com.example.storyapp.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import com.example.storyapp.api.ApiConfig
+import com.example.storyapp.api.Register
 import com.example.storyapp.databinding.FragmentRegisterBinding
 import retrofit2.Call
 import retrofit2.Callback

@@ -1,13 +1,13 @@
-package com.example.storyapp
+package com.example.storyapp.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
+import com.example.storyapp.api.ApiConfig
+import com.example.storyapp.api.Login
 import retrofit2.Callback
 import com.example.storyapp.databinding.FragmentLoginBinding
 import retrofit2.Call
