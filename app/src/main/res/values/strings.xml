@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">StoryApp</string>
-    <string name="tab_text_1">Login</string>
-    <string name="tab_text_2">Register</string>
+    <string name="login">Masuk</string>
+    <string name="register">Daftar</string>
     <string name="invalid_password">Password kurang dari 6 characters</string>
-    <string name="invalid_email">format email salah</string>
+    <string name="invalid_email">Format email salah</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="name">Nama</string>
+    <string name="invalid_name">Nama masih kosong</string>
 </resources>

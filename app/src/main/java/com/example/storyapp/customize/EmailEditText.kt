@@ -25,7 +25,7 @@ class EmailEditText : AppCompatEditText, View.OnFocusChangeListener {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        hint = "email"
+        hint = context.getString(R.string.email)
     }
 
     override fun onFocusChange(v: View?, hasFocus: Boolean) {

@@ -3,8 +3,8 @@ package com.example.storyapp.adapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.storyapp.fragments.LoginFragment
-import com.example.storyapp.fragments.RegisterFragment
+import com.example.storyapp.fragments.login.LoginFragment
+import com.example.storyapp.fragments.register.RegisterFragment
 
 class SectionsPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activity) {
     override fun createFragment(position: Int): Fragment {

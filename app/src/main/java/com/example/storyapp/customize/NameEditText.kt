@@ -8,7 +8,7 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import com.example.storyapp.R
 
-class PasswordEditText : AppCompatEditText, View.OnFocusChangeListener {
+class NameEditText : AppCompatEditText, View.OnFocusChangeListener{
     constructor(context: Context) : super(context) {
         init()
     }
@@ -25,14 +25,13 @@ class PasswordEditText : AppCompatEditText, View.OnFocusChangeListener {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        hint = context.getString(R.string.password)
-        transformationMethod = PasswordTransformationMethod.getInstance()
+        hint = context.getString(R.string.name)
     }
 
     override fun onFocusChange(v: View?, hasFocus: Boolean) {
         if (!hasFocus){
-            if (!text.isNullOrEmpty() && text!!.length < 6){
-                error = context.getString(R.string.invalid_password)
+            if (text.isNullOrEmpty()){
+                error = context.getString(R.string.invalid_name)
             }
         }
     }
