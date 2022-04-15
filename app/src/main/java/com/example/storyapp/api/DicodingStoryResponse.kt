@@ -19,6 +19,9 @@ data class Login(
 
 	@field:SerializedName("message")
 	val message: String,
+
+	@field:SerializedName("loginResult")
+	val loginResult: UserData
 )
 
 data class UserData(
