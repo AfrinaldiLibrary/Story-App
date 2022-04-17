@@ -8,4 +8,5 @@
     <string name="email">Email</string>
     <string name="name">Nama</string>
     <string name="invalid_name">Nama masih kosong</string>
+    <string name="image_desc">Foto</string>
 </resources>

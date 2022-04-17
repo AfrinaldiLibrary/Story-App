@@ -1,5 +1,6 @@
 package com.example.storyapp.fragments.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.example.storyapp.activities.StoryActivity
+import com.example.storyapp.data.PrefManager
 import com.example.storyapp.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
@@ -16,6 +19,7 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var prefManager: PrefManager
     private val loginViewModel by viewModels<LoginViewModel>()
 
     override fun onCreateView(
@@ -29,6 +33,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        prefManager = PrefManager(this)
         setButton()
         inputListener()
         loginCheck()
@@ -74,11 +79,25 @@ class LoginFragment : Fragment() {
 
     private fun loginCheck() {
         binding.btnLogin.setOnClickListener {
+            loginViewModel.response.observe(viewLifecycleOwner){
+                prefManager.setToken(it.token)
+                prefManager.setLoggin(true)
+            }
             loginViewModel.postLogin(binding.etEmail.text.toString(), binding.etPassword.text.toString())
         }
 
         loginViewModel.isLoading.observe(viewLifecycleOwner) {
             showsLoading(it)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (prefManager.isLogin()!!){
+            activity?.let{
+                val intent = Intent (it, StoryActivity::class.java)
+                it.startActivity(intent)
+            }
         }
     }
 
