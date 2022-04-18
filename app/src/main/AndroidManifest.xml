@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StoryApp">
         <activity
-            android:name=".activities.StoryActivity"
+            android:name=".activities.stories.StoryActivity"
             android:exported="false" />
         <activity
             android:name=".activities.MainActivity"

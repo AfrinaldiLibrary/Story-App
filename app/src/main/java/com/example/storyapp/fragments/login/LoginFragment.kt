@@ -10,7 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.example.storyapp.activities.StoryActivity
+import com.example.storyapp.activities.stories.StoryActivity
 import com.example.storyapp.data.PrefManager
 import com.example.storyapp.databinding.FragmentLoginBinding
 
