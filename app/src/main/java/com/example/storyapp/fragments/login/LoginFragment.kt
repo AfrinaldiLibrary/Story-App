@@ -33,10 +33,14 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        prefManager = PrefManager(this)
+        init()
         setButton()
         inputListener()
         loginCheck()
+    }
+
+    private fun init(){
+        prefManager = PrefManager(requireContext())
     }
 
     private fun inputListener() {
@@ -88,6 +92,15 @@ class LoginFragment : Fragment() {
 
         loginViewModel.isLoading.observe(viewLifecycleOwner) {
             showsLoading(it)
+        }
+
+        loginViewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
+            if (isSuccess){
+                activity?.let{
+                    val intent = Intent (it, StoryActivity::class.java)
+                    it.startActivity(intent)
+                }
+            }
         }
     }
 

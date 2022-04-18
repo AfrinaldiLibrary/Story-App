@@ -15,17 +15,21 @@ class LoginViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    private val _isSuccess = MutableLiveData<Boolean>()
+    val isSuccess: LiveData<Boolean> = _isSuccess
+
     private val _response = MutableLiveData<UserData>()
     val response: LiveData<UserData> = _response
 
     fun postLogin(email: String, password: String) {
-        _isLoading.value = true
+        _isLoading.postValue(true)
         val client = ApiConfig.getApiService().postLogin(email, password)
         client.enqueue(object : Callback<Login> {
             override fun onResponse(call: Call<Login>, response: Response<Login>) {
                 _isLoading.postValue(false)
                 if (response.isSuccessful) {
                     _response.postValue(response.body()?.loginResult)
+                    _isSuccess.postValue(true)
                     Log.e(TAG, "login berhasil")
                 } else {
                     Log.e(TAG, "login gagal")
