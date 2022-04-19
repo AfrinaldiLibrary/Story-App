@@ -38,10 +38,9 @@ class StoryActivity : AppCompatActivity() {
 
     private fun getStories() {
         val token = prefManager.getToken().toString()
-        binding.show.text = token
+        storyViewModel.showStories(token)
         storyViewModel.stories.observe(this@StoryActivity){
             if (it != null){
-                storyViewModel.showStories(token)
                 adapter.setList(it)
                 showStories()
             }
