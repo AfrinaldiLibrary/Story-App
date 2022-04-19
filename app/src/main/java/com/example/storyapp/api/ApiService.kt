@@ -23,7 +23,7 @@ interface ApiService {
         @Field("password") password: String
     ): Call<Login>
 
-    @GET
+    @GET("stories")
     fun getAllStories(
         @Header("Authorization") token: String
     ): Call<DicodingStoryResponse>

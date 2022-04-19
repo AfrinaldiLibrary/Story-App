@@ -3,8 +3,10 @@ package com.example.storyapp.activities.stories
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.viewModels
 import com.example.storyapp.R
 import com.example.storyapp.activities.LoginActivity
@@ -28,19 +30,31 @@ class StoryActivity : AppCompatActivity() {
         _binding = ActivityStoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         init()
         checkLogin()
         getStories()
     }
 
     private fun getStories() {
+        val token = prefManager.getToken().toString()
+        binding.show.text = token
         storyViewModel.stories.observe(this@StoryActivity){
             if (it != null){
-                val token = prefManager.getToken().toString()
                 storyViewModel.showStories(token)
                 adapter.setList(it)
+                showStories()
             }
         }
+
+        storyViewModel.isLoading.observe(this@StoryActivity) {
+            showProgressBar(it)
+        }
+    }
+
+    private fun showStories() {
+        binding.rvStory.setHasFixedSize(true)
+        binding.rvStory.adapter = adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -69,6 +83,10 @@ class StoryActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun showProgressBar(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun init(){
