@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.storyapp.api.ListStoryItem
 import com.example.storyapp.databinding.StoryCardBinding
+import java.text.SimpleDateFormat
 import kotlin.collections.ArrayList
 
 class StoryAdapter : RecyclerView.Adapter<StoryAdapter.ListViewHolder>() {
@@ -28,11 +29,14 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.ListViewHolder>() {
     override fun getItemCount() = list.size
 
     class ListViewHolder(private val binding: StoryCardBinding) : RecyclerView.ViewHolder(binding.root){
+        private val parser =  SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+        private val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm")
         fun bind(stories : ListStoryItem){
             binding.apply {
                 tvName.text = stories.name
                 tvDesc.text = stories.description
-                tvDate.text = stories.createdAt
+                val formattedDate = formatter.format(parser.parse(stories.createdAt)!!)
+                tvDate.text = formattedDate
                 Glide.with(binding.root)
                     .load(stories.photoUrl)
                     .centerCrop()
