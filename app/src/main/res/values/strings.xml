@@ -9,6 +9,14 @@
     <string name="name">Nama</string>
     <string name="invalid_name">Nama masih kosong</string>
     <string name="image_desc">Foto</string>
-    <string name="create_at">Dibuat pada : %1$s,</string>
-    <string name="logout">KELUAR</string>
+    <string name="create_at">Dibuat pada : %1$s</string>
+    <string name="date">19/4/2021</string>
+    <string name="logout">Keluar</string>
+    <string name="register_success">Register Berhasil</string>
+    <string name="already_exists">Akun sudah ada</string>
+    <string name="stories_page">Stories</string>
+    <string name="login_page">Login Page</string>
+    <string name="fab">fab</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

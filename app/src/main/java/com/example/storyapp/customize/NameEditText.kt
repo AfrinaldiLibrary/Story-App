@@ -2,7 +2,6 @@ package com.example.storyapp.customize
 
 import android.content.Context
 import android.graphics.Canvas
-import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
 import android.view.View
 import androidx.appcompat.widget.AppCompatEditText

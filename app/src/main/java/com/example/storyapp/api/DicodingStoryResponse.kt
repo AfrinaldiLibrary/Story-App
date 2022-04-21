@@ -70,3 +70,11 @@ data class ListStoryItem(
 	@field:SerializedName("lat")
 	val lat: Double
 )
+
+data class UploadResponse(
+	@field:SerializedName("error")
+	val error: Boolean,
+
+	@field:SerializedName("message")
+	val message: String
+)

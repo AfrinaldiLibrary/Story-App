@@ -1,4 +1,4 @@
-package com.example.storyapp.activities.stories
+package com.example.storyapp.fragments.stories
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -11,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class StoryViewModel : ViewModel() {
+class StoriesViewModel : ViewModel() {
     private val _stories = MutableLiveData<List<ListStoryItem>>()
     val stories: LiveData<List<ListStoryItem>> = _stories
 
@@ -43,6 +43,6 @@ class StoryViewModel : ViewModel() {
     }
 
     companion object {
-        const val TAG = "StoryViewModel"
+        const val TAG = "StoriesViewModel"
     }
 }

@@ -9,7 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.example.storyapp.R
 import com.example.storyapp.databinding.FragmentRegisterBinding
+import com.google.android.material.snackbar.Snackbar
+
 class RegisterFragment : Fragment() {
 
     private var _binding: FragmentRegisterBinding? = null
@@ -36,7 +39,12 @@ class RegisterFragment : Fragment() {
     private fun inputListener() {
         binding.apply {
             etName.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                override fun beforeTextChanged(
+                    s: CharSequence,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
 
                 }
 
@@ -50,7 +58,12 @@ class RegisterFragment : Fragment() {
             })
 
             etEmail.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                override fun beforeTextChanged(
+                    s: CharSequence,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
 
                 }
 
@@ -64,7 +77,12 @@ class RegisterFragment : Fragment() {
             })
 
             etPassword.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                override fun beforeTextChanged(
+                    s: CharSequence,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
 
                 }
 
@@ -81,18 +99,39 @@ class RegisterFragment : Fragment() {
 
     private fun setButton() {
         binding.apply {
-            btnRegister.isEnabled = etName.text!!.isNotEmpty() &&etPassword.text!!.length >= 6 && Patterns.EMAIL_ADDRESS.matcher(etEmail.text.toString()).matches()
+            btnRegister.isEnabled =
+                etName.text!!.isNotEmpty() && etPassword.text!!.length >= 6 && Patterns.EMAIL_ADDRESS.matcher(
+                    etEmail.text.toString()
+                ).matches()
         }
     }
 
     private fun registerCheck() {
-        binding.btnRegister.setOnClickListener {
-            registerViewModel.postRegister(binding.etName.text.toString(), binding.etEmail.text.toString(), binding.etPassword.text.toString())
+        binding.apply {
+            btnRegister.setOnClickListener {
+                registerViewModel.postRegister(
+                    etName.text.toString(),
+                    etEmail.text.toString(),
+                    etPassword.text.toString()
+                )
+                registerViewModel.isSuccess.observe(viewLifecycleOwner) {
+                    clearInput(it)
+                }
+            }
         }
 
         registerViewModel.isLoading.observe(viewLifecycleOwner) {
             showsLoading(it)
         }
+    }
+
+    private fun clearInput(isSuccess: Boolean) {
+        if (isSuccess) binding.apply {
+            etName.setText("")
+            etEmail.setText("")
+            etPassword.setText("")
+            Snackbar.make(binding.root, R.string.register_success, Snackbar.LENGTH_SHORT).show()
+        } else Snackbar.make(binding.root, R.string.already_exists, Snackbar.LENGTH_SHORT).show()
     }
 
     private fun showsLoading(isLoading: Boolean) {

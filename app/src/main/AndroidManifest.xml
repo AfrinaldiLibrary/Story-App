@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StoryApp">
         <activity
-            android:name=".activities.stories.StoryActivity"
-            android:exported="false" />
-        <activity
             android:name=".activities.MainActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".activities.stories.StoryActivity"
             android:exported="false" />
         <activity
             android:name=".activities.LoginActivity"
@@ -26,12 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="true" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" />
     </application>
 
 </manifest>

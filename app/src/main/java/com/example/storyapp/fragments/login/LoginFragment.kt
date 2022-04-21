@@ -10,7 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.example.storyapp.activities.stories.StoryActivity
+import com.example.storyapp.activities.MainActivity
 import com.example.storyapp.data.PrefManager
 import com.example.storyapp.databinding.FragmentLoginBinding
 
@@ -37,6 +37,7 @@ class LoginFragment : Fragment() {
         setButton()
         inputListener()
         loginCheck()
+
     }
 
     private fun init(){
@@ -97,8 +98,9 @@ class LoginFragment : Fragment() {
         loginViewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess){
                 activity?.let{
-                    val intent = Intent (it, StoryActivity::class.java)
+                    val intent = Intent (it, MainActivity::class.java)
                     it.startActivity(intent)
+                    it.finish()
                 }
             }
         }
@@ -108,10 +110,16 @@ class LoginFragment : Fragment() {
         super.onStart()
         if (prefManager.isLogin()!!){
             activity?.let{
-                val intent = Intent (it, StoryActivity::class.java)
+                val intent = Intent(it, MainActivity::class.java)
                 it.startActivity(intent)
+                it.finish()
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     private fun showsLoading(isLoading: Boolean) {
