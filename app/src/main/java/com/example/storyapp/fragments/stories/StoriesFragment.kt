@@ -6,6 +6,7 @@ import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import com.example.storyapp.R
 import com.example.storyapp.activities.LoginActivity
 import com.example.storyapp.adapter.StoryAdapter
@@ -85,9 +86,13 @@ class StoriesFragment : Fragment() {
             rvStory.adapter = adapter
             adapter.setOnItemClickCallback(object: StoryAdapter.OnItemClickCallback{
                 override fun onItemClick(stories: ListStoryItem) {
-
+                    val toDetailFragment = StoriesFragmentDirections.actionStoriesFragmentToDetailFragment()
+                    toDetailFragment.name = stories.name
+                    toDetailFragment.date = stories.createdAt
+                    toDetailFragment.description = stories.description
+                    toDetailFragment.photo = stories.photoUrl
+                    view?.findNavController()?.navigate(toDetailFragment)
                 }
-
             })
         }
     }

@@ -26,6 +26,9 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.ListViewHolder>() {
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         holder.bind(list[position])
+        holder.itemView.setOnClickListener{
+            onItemClickCallback.onItemClick(list[holder.adapterPosition])
+        }
     }
 
     override fun getItemCount() = list.size

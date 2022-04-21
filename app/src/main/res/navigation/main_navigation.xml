@@ -9,5 +9,31 @@
         android:id="@+id/storiesFragment"
         android:name="com.example.storyapp.fragments.stories.StoriesFragment"
         android:label="fragment_stories"
-        tools:layout="@layout/fragment_stories" />
+        tools:layout="@layout/fragment_stories" >
+        <action
+            android:id="@+id/action_storiesFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.storyapp.fragments.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="name"
+            app:argType="string"
+            android:defaultValue="default name" />
+        <argument
+            android:name="date"
+            app:argType="string"
+            android:defaultValue="default date" />
+        <argument
+            android:name="description"
+            app:argType="string"
+            android:defaultValue="default description" />
+        <argument
+            android:name="photo"
+            app:argType="string"
+            android:defaultValue="default photo" />
+    </fragment>
 </navigation>
