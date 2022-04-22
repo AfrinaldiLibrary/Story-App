@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_storiesFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_storiesFragment_to_uploadFileFragment"
+            app:destination="@id/uploadFileFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -36,4 +39,18 @@
             app:argType="string"
             android:defaultValue="default photo" />
     </fragment>
+    <fragment
+        android:id="@+id/uploadFileFragment"
+        android:name="com.example.storyapp.fragments.uploadfile.UploadFileFragment"
+        android:label="fragment_upload_file"
+        tools:layout="@layout/fragment_upload_file" >
+        <action
+            android:id="@+id/action_uploadFileFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.example.storyapp.fragments.uploadfile.camera.CameraFragment"
+        android:label="fragment_camera"
+        tools:layout="@layout/fragment_camera" />
 </navigation>

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.storyapp.R
 import com.example.storyapp.databinding.FragmentDetailBinding
@@ -24,6 +25,12 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.detail_page)
+
+        showDetail()
+    }
+
+    private fun showDetail() {
         with(DetailFragmentArgs.fromBundle(arguments as Bundle)){
             val dataName = name
             val dataDate = date
