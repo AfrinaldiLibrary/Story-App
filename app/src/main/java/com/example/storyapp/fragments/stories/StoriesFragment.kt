@@ -43,12 +43,6 @@ class StoriesFragment : Fragment() {
         checkLogin()
         getStories()
         uploadButton()
-
-        binding.fabAdd.setOnClickListener{
-            val toUploadFileFragment = StoriesFragmentDirections.actionStoriesFragmentToUploadFileFragment()
-
-            view.findNavController().navigate(toUploadFileFragment)
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -104,7 +98,10 @@ class StoriesFragment : Fragment() {
     }
 
     private fun uploadButton() {
-        binding.fabAdd.setOnClickListener {
+        binding.fabAdd.setOnClickListener{
+            val toUploadFileFragment = StoriesFragmentDirections.actionStoriesFragmentToUploadFileFragment()
+
+            view?.findNavController()?.navigate(toUploadFileFragment)
         }
     }
 

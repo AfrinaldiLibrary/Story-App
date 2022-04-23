@@ -20,7 +20,10 @@
     <string name="fab">fab</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="not_grant">Tidak mendapat permission</string>
     <string name="camera_x">Kamera</string>
     <string name="gallery">Gallery</string>
     <string name="upload">Unggah</string>
+    <string name="description">Masukkan deskripsi...</string>
+    <string name="title_description">Apa yang kamu pikirkan?</string>
 </resources>
