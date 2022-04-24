@@ -5,6 +5,7 @@ import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
@@ -23,14 +24,12 @@ import com.example.storyapp.R
 import com.example.storyapp.data.PrefManager
 import com.example.storyapp.databinding.FragmentUploadFileBinding
 import com.example.storyapp.helper.reduceFileImage
-import com.example.storyapp.helper.rotateBitmap
 import com.example.storyapp.helper.uriToFile
 import com.google.android.material.snackbar.Snackbar
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.*
-
 
 class UploadFileFragment : Fragment() {
     private var _binding: FragmentUploadFileBinding? = null
@@ -40,6 +39,7 @@ class UploadFileFragment : Fragment() {
     private lateinit var prefManager: PrefManager
 
     private var getFile: File? = null
+    private var camera: Bitmap? = null
     private lateinit var safeContext: Context
 
     override fun onAttach(context: Context) {
@@ -115,6 +115,8 @@ class UploadFileFragment : Fragment() {
             viewModel.isLoading.observe(viewLifecycleOwner){
                 showProgressBar(it)
             }
+        } else {
+            Snackbar.make(binding.root, R.string.no_image, Snackbar.LENGTH_SHORT).show()
         }
     }
 
@@ -148,10 +150,9 @@ class UploadFileFragment : Fragment() {
             ADD_RESULT
         ) { _, result ->
             val myFile = result.getSerializable("picture") as File
-            val isBackCamera = result.getBoolean("isBackCamera", true)
 
             getFile = myFile
-            val camera = BitmapFactory.decodeFile(getFile?.path)
+            camera = BitmapFactory.decodeFile(getFile?.path)
             binding.ivPreview.setImageBitmap(camera)
         }
     }
