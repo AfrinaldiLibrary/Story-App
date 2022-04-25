@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">StoryApp</string>
+    <string name="login">Masuk</string>
+    <string name="register">Daftar</string>
+    <string name="invalid_password">Password kurang dari 6 characters</string>
+    <string name="invalid_email">Format email salah</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="name">Nama</string>
+    <string name="invalid_name">Nama masih kosong</string>
+    <string name="image_desc">Foto</string>
+    <string name="date">19/4/2021</string>
+    <string name="logout">Keluar</string>
+    <string name="register_success">Register Berhasil</string>
+    <string name="already_exists">Akun sudah ada</string>
+    <string name="stories_page">Stories</string>
+    <string name="detail_page">Detail</string>
+    <string name="login_page">Login Page</string>
+    <string name="fab">fab</string>
+    <string name="not_grant">Tidak mendapat permission</string>
+    <string name="no_image">Gambar tidak boleh kosong</string>
+    <string name="camera_x">Kamera</string>
+    <string name="gallery">Gallery</string>
+    <string name="upload">Unggah</string>
+    <string name="description">Masukkan deskripsi..</string>
+    <string name="title_description">Apa yang kamu pikirkan?</string>
+    <string name="setting">Pengaturan</string>
+</resources>

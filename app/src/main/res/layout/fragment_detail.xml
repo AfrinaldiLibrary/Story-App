@@ -12,7 +12,6 @@
         android:layout_height="200dp"
         android:contentDescription="@string/image_desc"
         android:scaleType="centerCrop"
-        android:transitionName="image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,7 +25,6 @@
         android:layout_marginTop="8dp"
         android:maxLines="1"
         android:ellipsize="end"
-        android:transitionName="tanggal"
         tools:text="@tools:sample/date/ddmmyy"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +40,6 @@
         android:maxLines="1"
         android:textAppearance="?attr/textAppearanceHeadline6"
         android:textSize="24sp"
-        android:transitionName="nama"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_date"
@@ -56,7 +53,6 @@
         android:layout_marginStart="24dp"
         android:maxLines="10"
         android:ellipsize="end"
-        android:transitionName="deskripsi"
         tools:text="@tools:sample/lorem/random"
         android:textAppearance="?attr/textAppearanceBody2"
         android:textColor="?android:attr/textColorSecondary"
@@ -65,5 +61,65 @@
         app:layout_constraintTop_toBottomOf="@id/tv_name"
         />
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/test_image"
+                android:layout_width="match_parent"
+                android:layout_height="194dp"
+                android:transitionName="test_image"
+                android:src="@drawable/ic_image"
+                android:contentDescription="@string/image_desc"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="132dp"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/test_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:transitionName="test_name"
+                    tools:text="Pusing aku"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    />
+                <TextView
+                    android:id="@+id/test_desc"
+                    android:transitionName="test_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:text="kok bisa?"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    />
+                <TextView
+                    android:id="@+id/test_date"
+                    android:transitionName="test_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:text="18 april 2021"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,30 +1,28 @@
 <resources>
     <string name="app_name">StoryApp</string>
-    <string name="login">Masuk</string>
-    <string name="register">Daftar</string>
-    <string name="invalid_password">Password kurang dari 6 characters</string>
-    <string name="invalid_email">Format email salah</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="invalid_password">Password less than 6 characters</string>
+    <string name="invalid_email">Incorrect email format</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
-    <string name="name">Nama</string>
-    <string name="invalid_name">Nama masih kosong</string>
-    <string name="image_desc">Foto</string>
-    <string name="create_at">Dibuat pada : %1$s</string>
+    <string name="name">Name</string>
+    <string name="invalid_name">Name empty</string>
+    <string name="image_desc">Photo</string>
     <string name="date">19/4/2021</string>
-    <string name="logout">Keluar</string>
-    <string name="register_success">Register Berhasil</string>
-    <string name="already_exists">Akun sudah ada</string>
+    <string name="logout">Logout</string>
+    <string name="register_success">Registration Successful</string>
+    <string name="already_exists">Account already exists</string>
     <string name="stories_page">Stories</string>
     <string name="detail_page">Detail</string>
     <string name="login_page">Login Page</string>
     <string name="fab">fab</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="not_grant">Tidak mendapat permission</string>
-    <string name="no_image">Gambar tidak boleh kosong</string>
-    <string name="camera_x">Kamera</string>
+    <string name="not_grant">permission not granted</string>
+    <string name="no_image">Image cannot be empty</string>
+    <string name="camera_x">Camera</string>
     <string name="gallery">Gallery</string>
-    <string name="upload">Unggah</string>
-    <string name="description">Masukkan deskripsi...</string>
-    <string name="title_description">Apa yang kamu pikirkan?</string>
+    <string name="upload">Upload</string>
+    <string name="description">Enter a description..</string>
+    <string name="title_description">What are you thinking about?</string>
+    <string name="setting">Setting</string>
 </resources>

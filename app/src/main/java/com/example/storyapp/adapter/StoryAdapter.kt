@@ -2,17 +2,20 @@ package com.example.storyapp.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.app.SharedElementCallback
+import androidx.core.view.ViewCompat
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.storyapp.api.ListStoryItem
 import com.example.storyapp.databinding.StoryCardBinding
+import com.example.storyapp.fragments.stories.StoriesFragmentDirections
 import com.example.storyapp.helper.withDateFormat
 import kotlin.collections.ArrayList
 
 class StoryAdapter : RecyclerView.Adapter<StoryAdapter.ListViewHolder>() {
     private val list = ArrayList<ListStoryItem>()
-
-    private lateinit var onItemClickCallback: OnItemClickCallback
 
     fun setList(stories: List<ListStoryItem>){
         list.clear()
@@ -26,9 +29,6 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.ListViewHolder>() {
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         holder.bind(list[position])
-        holder.itemView.setOnClickListener{
-            onItemClickCallback.onItemClick(list[holder.adapterPosition])
-        }
     }
 
     override fun getItemCount() = list.size
@@ -44,14 +44,27 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.ListViewHolder>() {
                     .centerCrop()
                     .into(ivPhoto)
             }
+            ViewCompat.setTransitionName(binding.ivPhoto, "iv_photo")
+            ViewCompat.setTransitionName(binding.tvDate, "tv_date")
+            ViewCompat.setTransitionName(binding.tvName, "tv_name")
+            ViewCompat.setTransitionName(binding.tvDesc, "tv_desc")
+
+            val toDetailFragment = StoriesFragmentDirections.actionStoriesFragmentToDetailFragment()
+            toDetailFragment.name = stories.name
+            toDetailFragment.date = stories.createdAt
+            toDetailFragment.description = stories.description
+            toDetailFragment.photo = stories.photoUrl
+            val extras = FragmentNavigatorExtras(
+                Pair(binding.ivPhoto, "iv_photo"),
+                Pair(binding.tvDate, "tv_date"),
+                Pair(binding.tvName, "tv_name"),
+                Pair(binding.tvDesc, "tv_desc")
+            )
+
+            binding.card.setOnClickListener{
+
+                it?.findNavController()?.navigate(toDetailFragment, extras)
+            }
         }
-    }
-
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
-        this.onItemClickCallback = onItemClickCallback
-    }
-
-    interface OnItemClickCallback{
-        fun onItemClick(stories : ListStoryItem)
     }
 }
