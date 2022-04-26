@@ -1,5 +1,6 @@
 package com.example.storyapp.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
@@ -43,10 +44,11 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.ListViewHolder>() {
                     .centerCrop()
                     .into(ivPhoto)
             }
-            ViewCompat.setTransitionName(binding.ivPhoto, "iv_photo")
-            ViewCompat.setTransitionName(binding.tvDate, "tv_date")
-            ViewCompat.setTransitionName(binding.tvName, "tv_name")
-            ViewCompat.setTransitionName(binding.tvDesc, "tv_desc")
+
+            Log.e("transitionStory", binding.tvName.transitionName)
+            Log.e("transitionStory", binding.tvDate.transitionName)
+            Log.e("transitionStory", binding.tvDesc.transitionName)
+            Log.e("transitionStory", binding.ivPhoto.transitionName)
 
             val toDetailFragment = StoriesFragmentDirections.actionStoriesFragmentToDetailFragment()
             toDetailFragment.name = stories.name

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import android.transition.ChangeBounds
+import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.doOnPreDraw
@@ -39,6 +40,7 @@ class StoriesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.stories_page)
+
         postponeEnterTransition()
 
         setHasOptionsMenu(true)
@@ -46,11 +48,6 @@ class StoriesFragment : Fragment() {
         checkLogin()
         getStories()
         uploadButton()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        sharedElementEnterTransition = ChangeBounds()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
