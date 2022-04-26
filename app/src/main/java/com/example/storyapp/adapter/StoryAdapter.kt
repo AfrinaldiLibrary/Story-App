@@ -2,7 +2,6 @@ package com.example.storyapp.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.app.SharedElementCallback
 import androidx.core.view.ViewCompat
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -52,13 +51,14 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.ListViewHolder>() {
             val toDetailFragment = StoriesFragmentDirections.actionStoriesFragmentToDetailFragment()
             toDetailFragment.name = stories.name
             toDetailFragment.date = stories.createdAt
-            toDetailFragment.description = stories.description
+            toDetailFragment.desc = stories.description
             toDetailFragment.photo = stories.photoUrl
+
             val extras = FragmentNavigatorExtras(
-                Pair(binding.ivPhoto, "iv_photo"),
-                Pair(binding.tvDate, "tv_date"),
-                Pair(binding.tvName, "tv_name"),
-                Pair(binding.tvDesc, "tv_desc")
+                Pair(binding.ivPhoto, "photo"),
+                Pair(binding.tvDate, "date"),
+                Pair(binding.tvName, "name"),
+                Pair(binding.tvDesc, "desc")
             )
 
             binding.card.setOnClickListener{

@@ -1,29 +1,25 @@
 package com.example.storyapp.fragments.detail
 
 import android.os.Bundle
-import android.transition.TransitionInflater
+import android.transition.ChangeBounds
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.bumptech.glide.Glide
 import com.example.storyapp.R
 import com.example.storyapp.databinding.FragmentDetailBinding
-import com.example.storyapp.fragments.TestFragment
 import com.example.storyapp.helper.withDateFormat
 
 
-class DetailFragment : Fragment(){
+class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -32,37 +28,24 @@ class DetailFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.detail_page)
 
-
-        ViewCompat.setTransitionName(binding.ivPhoto, "iv_photo")
-        ViewCompat.setTransitionName(binding.tvDate, "tv_date")
-        ViewCompat.setTransitionName(binding.tvName, "tv_name")
-        ViewCompat.setTransitionName(binding.tvDesc, "tv_desc")
+//        postponeEnterTransition()
+//        (view.parent as? ViewGroup)?.doOnPreDraw {
+//            startPostponedEnterTransition()
+//        }
 
         showDetail()
-
-        binding.card.setOnClickListener {
-            val extras = FragmentNavigatorExtras(
-                Pair(binding.testImage, "test_image"),
-                Pair(binding.testDate, "test_date"),
-                Pair(binding.testName, "test_name"),
-                Pair(binding.testDesc, "test_desc")
-            )
-
-            view.findNavController().navigate(R.id.action_detailFragment_to_testFragment, null, null,extras)
-        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedElementEnterTransition = TransitionInflater.from(requireContext())
-            .inflateTransition(R.transition.shared_image)
+        sharedElementEnterTransition = ChangeBounds()
     }
 
     private fun showDetail() {
-        with(DetailFragmentArgs.fromBundle(arguments as Bundle)){
+        with(DetailFragmentArgs.fromBundle(arguments as Bundle)) {
             val dataName = name
             val dataDate = date
-            val dataDescription = description
+            val dataDescription = desc
             val dataPhoto = photo
 
             binding.apply {
@@ -71,6 +54,32 @@ class DetailFragment : Fragment(){
                 tvDesc.text = dataDescription
                 Glide.with(binding.root)
                     .load(dataPhoto)
+//                    .listener(object : RequestListener<Drawable> {
+//                        override fun onLoadFailed(
+//                            e: GlideException?,
+//                            model: Any?,
+//                            target: Target<Drawable>?,
+//                            isFirstResource: Boolean
+//                        ): Boolean {
+//                            view?.doOnPreDraw {
+//                                startPostponedEnterTransition()
+//                            }
+//                            return false
+//                        }
+//
+//                        override fun onResourceReady(
+//                            resource: Drawable?,
+//                            model: Any?,
+//                            target: Target<Drawable>?,
+//                            dataSource: DataSource?,
+//                            isFirstResource: Boolean
+//                        ): Boolean {
+//                            view?.doOnPreDraw {
+//                                startPostponedEnterTransition()
+//                            }
+//                            return false
+//                        }
+//                    })
                     .centerCrop()
                     .into(ivPhoto)
             }

@@ -5,16 +5,20 @@
       <map>
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/drawable/bg_button_disabled.xml" value="0.1195" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/drawable/bg_button_enabled.xml" value="0.1195" />
+        <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/drawable/border.xml" value="0.1" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/drawable/border_corner.xml" value="0.1045" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/drawable/ic_add.xml" value="0.1" />
+        <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/drawable/ic_camera.xml" value="0.1" />
+        <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/drawable/ic_image.xml" value="0.1" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1195" />
+        <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/drawable/ic_switch_camera.xml" value="0.1" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/activity_register.xml" value="0.1" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/activity_story.xml" value="0.2" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/content_main.xml" value="0.159375" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/fragment_camera.xml" value="0.128" />
-        <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/fragment_detail.xml" value="0.1" />
+        <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/fragment_detail.xml" value="0.152" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/fragment_first.xml" value="0.159375" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/fragment_login.xml" value="0.3611111111111111" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/fragment_register.xml" value="0.2" />
@@ -25,7 +29,7 @@
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/fragment_upload_file.xml" value="0.1" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/login_tab_fragment.xml" value="0.25" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/register_tab_fragment.xml" value="0.25" />
-        <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/story_card.xml" value="0.1" />
+        <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/story_card.xml" value="0.35812133072407043" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/menu/main_menu.xml" value="0.264" />
       </map>
     </option>

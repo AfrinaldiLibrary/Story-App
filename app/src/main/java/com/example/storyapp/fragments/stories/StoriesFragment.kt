@@ -3,16 +3,16 @@ package com.example.storyapp.fragments.stories
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.transition.ChangeBounds
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.example.storyapp.R
 import com.example.storyapp.activities.LoginActivity
 import com.example.storyapp.adapter.StoryAdapter
-import com.example.storyapp.api.ListStoryItem
 import com.example.storyapp.data.PrefManager
 import com.example.storyapp.databinding.FragmentStoriesBinding
 
@@ -39,12 +39,18 @@ class StoriesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.stories_page)
+        postponeEnterTransition()
 
         setHasOptionsMenu(true)
         init()
         checkLogin()
         getStories()
         uploadButton()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedElementEnterTransition = ChangeBounds()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -77,6 +83,11 @@ class StoriesFragment : Fragment() {
             if (it != null){
                 adapter.setList(it)
                 showStories()
+
+                view?.doOnPreDraw {
+                    startPostponedEnterTransition()
+                }
+
             }
         }
 

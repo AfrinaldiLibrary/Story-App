@@ -31,16 +31,13 @@
             app:argType="string"
             android:defaultValue="default date" />
         <argument
-            android:name="description"
+            android:name="desc"
             app:argType="string"
             android:defaultValue="default description" />
         <argument
             android:name="photo"
             app:argType="string"
             android:defaultValue="default photo" />
-        <action
-            android:id="@+id/action_detailFragment_to_testFragment"
-            app:destination="@id/testFragment" />
     </fragment>
     <fragment
         android:id="@+id/uploadFileFragment"
@@ -61,9 +58,4 @@
         android:name="com.example.storyapp.fragments.uploadfile.camera.CameraFragment"
         android:label="fragment_camera"
         tools:layout="@layout/fragment_camera" />
-    <fragment
-        android:id="@+id/testFragment"
-        android:name="com.example.storyapp.fragments.TestFragment"
-        android:label="fragment_test"
-        tools:layout="@layout/fragment_test" />
 </navigation>
