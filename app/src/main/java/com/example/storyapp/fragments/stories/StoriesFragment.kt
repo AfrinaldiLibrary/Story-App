@@ -14,6 +14,7 @@ import com.example.storyapp.activities.LoginActivity
 import com.example.storyapp.adapter.StoryAdapter
 import com.example.storyapp.data.PrefManager
 import com.example.storyapp.databinding.FragmentStoriesBinding
+import com.google.android.material.snackbar.Snackbar
 
 class StoriesFragment : Fragment() {
     private var _binding : FragmentStoriesBinding? = null
@@ -74,16 +75,19 @@ class StoriesFragment : Fragment() {
     private fun getStories() {
         val token = prefManager.getToken().toString()
         storiesViewModel.showStories(token)
-        storiesViewModel.stories.observe(viewLifecycleOwner){
-            if (it != null){
-                adapter.setList(it)
-                showStories()
+        storiesViewModel.isSuccess.observe(viewLifecycleOwner){ isSuccess ->
+            if (isSuccess){
+                storiesViewModel.stories.observe(viewLifecycleOwner){
+                    if (it != null){
+                        adapter.setList(it)
+                        showStories()
 
-                view?.doOnPreDraw {
-                    startPostponedEnterTransition()
+                        view?.doOnPreDraw {
+                            startPostponedEnterTransition()
+                        }
+                    }
                 }
-
-            }
+            } else Snackbar.make(binding.root, R.string.data_failed, Snackbar.LENGTH_SHORT).show()
         }
 
         storiesViewModel.isLoading.observe(viewLifecycleOwner) {

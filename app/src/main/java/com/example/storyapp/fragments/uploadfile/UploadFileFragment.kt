@@ -109,15 +109,14 @@ class UploadFileFragment : Fragment() {
                     val toStoriesFragment = UploadFileFragmentDirections.actionUploadFileFragmentToStoriesFragment()
 
                     view?.findNavController()?.navigate(toStoriesFragment)
-                }
+                    Snackbar.make(binding.root, R.string.upload_success, Snackbar.LENGTH_SHORT).show()
+                } else Snackbar.make(binding.root, R.string.upload_failed, Snackbar.LENGTH_SHORT).show()
             }
 
             viewModel.isLoading.observe(viewLifecycleOwner){
                 showProgressBar(it)
             }
-        } else {
-            Snackbar.make(binding.root, R.string.no_image, Snackbar.LENGTH_SHORT).show()
-        }
+        } else Snackbar.make(binding.root, R.string.no_image, Snackbar.LENGTH_SHORT).show()
     }
 
     private fun startGallery() {

@@ -36,8 +36,11 @@ class UploadViewModel : ViewModel() {
                     if (responseBody != null && !responseBody.error) {
                         _isSuccess.postValue(true)
                         Log.e(TAG, "data berhasil di upload")
+                    } else {
+                        _isSuccess.postValue(false)
                     }
                 } else {
+                    _isSuccess.postValue(false)
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }

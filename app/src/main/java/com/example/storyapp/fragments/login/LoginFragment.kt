@@ -2,6 +2,8 @@ package com.example.storyapp.fragments.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
@@ -10,9 +12,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.example.storyapp.R
 import com.example.storyapp.activities.MainActivity
 import com.example.storyapp.data.PrefManager
 import com.example.storyapp.databinding.FragmentLoginBinding
+import com.google.android.material.snackbar.Snackbar
 
 class LoginFragment : Fragment() {
 
@@ -40,14 +44,19 @@ class LoginFragment : Fragment() {
 
     }
 
-    private fun init(){
+    private fun init() {
         prefManager = PrefManager(requireContext())
     }
 
     private fun inputListener() {
         binding.apply {
             etEmail.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                override fun beforeTextChanged(
+                    s: CharSequence,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
 
                 }
 
@@ -61,7 +70,12 @@ class LoginFragment : Fragment() {
             })
 
             etPassword.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                override fun beforeTextChanged(
+                    s: CharSequence,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
 
                 }
 
@@ -78,17 +92,22 @@ class LoginFragment : Fragment() {
 
     private fun setButton() {
         binding.apply {
-            btnLogin.isEnabled = etPassword.text!!.length >= 6 && Patterns.EMAIL_ADDRESS.matcher(etEmail.text.toString()).matches()
+            btnLogin.isEnabled =
+                etPassword.text!!.length >= 6 && Patterns.EMAIL_ADDRESS.matcher(etEmail.text.toString())
+                    .matches()
         }
     }
 
     private fun loginCheck() {
         binding.btnLogin.setOnClickListener {
-            loginViewModel.response.observe(viewLifecycleOwner){
+            loginViewModel.response.observe(viewLifecycleOwner) {
                 prefManager.setToken(it.token)
                 prefManager.setLoggin(true)
             }
-            loginViewModel.postLogin(binding.etEmail.text.toString(), binding.etPassword.text.toString())
+            loginViewModel.postLogin(
+                binding.etEmail.text.toString(),
+                binding.etPassword.text.toString()
+            )
         }
 
         loginViewModel.isLoading.observe(viewLifecycleOwner) {
@@ -96,20 +115,23 @@ class LoginFragment : Fragment() {
         }
 
         loginViewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
-            if (isSuccess){
-                activity?.let{
-                    val intent = Intent (it, MainActivity::class.java)
-                    it.startActivity(intent)
-                    it.finish()
-                }
-            }
+            if (isSuccess) {
+                Snackbar.make(binding.root, R.string.login_success, Snackbar.LENGTH_SHORT).show()
+                Handler(Looper.getMainLooper()).postDelayed({
+                    activity?.let {
+                        val intent = Intent(it, MainActivity::class.java)
+                        it.startActivity(intent)
+                        it.finish()
+                    }
+                }, 1000)
+            } else Snackbar.make(binding.root, R.string.login_fail, Snackbar.LENGTH_SHORT).show()
         }
     }
 
     override fun onStart() {
         super.onStart()
-        if (prefManager.isLogin()!!){
-            activity?.let{
+        if (prefManager.isLogin()!!) {
+            activity?.let {
                 val intent = Intent(it, MainActivity::class.java)
                 it.startActivity(intent)
                 it.finish()

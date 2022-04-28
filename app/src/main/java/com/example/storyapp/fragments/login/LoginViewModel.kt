@@ -33,6 +33,7 @@ class LoginViewModel : ViewModel() {
                     Log.e(TAG, "login berhasil")
                 } else {
                     Log.e(TAG, "login gagal")
+                    _isSuccess.postValue(false)
                 }
             }
 

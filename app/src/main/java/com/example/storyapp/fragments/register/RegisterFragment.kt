@@ -114,24 +114,21 @@ class RegisterFragment : Fragment() {
                     etEmail.text.toString(),
                     etPassword.text.toString()
                 )
-                registerViewModel.isSuccess.observe(viewLifecycleOwner) {
-                    clearInput(it)
-                }
             }
+        }
+
+        registerViewModel.isSuccess.observe(viewLifecycleOwner) {
+            if (it) binding.apply {
+                etName.setText("")
+                etEmail.setText("")
+                etPassword.setText("")
+                Snackbar.make(binding.root, R.string.register_success, Snackbar.LENGTH_SHORT).show()
+            } else Snackbar.make(binding.root, R.string.already_exists, Snackbar.LENGTH_SHORT).show()
         }
 
         registerViewModel.isLoading.observe(viewLifecycleOwner) {
             showsLoading(it)
         }
-    }
-
-    private fun clearInput(isSuccess: Boolean) {
-        if (isSuccess) binding.apply {
-            etName.setText("")
-            etEmail.setText("")
-            etPassword.setText("")
-            Snackbar.make(binding.root, R.string.register_success, Snackbar.LENGTH_SHORT).show()
-        } else Snackbar.make(binding.root, R.string.already_exists, Snackbar.LENGTH_SHORT).show()
     }
 
     private fun showsLoading(isLoading: Boolean) {
