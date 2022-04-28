@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/drawable/app_widget_background.xml" value="0.1505" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/drawable/bg_button_disabled.xml" value="0.1195" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/drawable/bg_button_enabled.xml" value="0.1195" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/drawable/border.xml" value="0.1" />
@@ -27,9 +28,11 @@
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/fragment_story.xml" value="0.15885416666666666" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/fragment_test.xml" value="0.25" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/fragment_upload_file.xml" value="0.1" />
+        <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/image_widget.xml" value="0.1" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/login_tab_fragment.xml" value="0.25" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/register_tab_fragment.xml" value="0.25" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/story_card.xml" value="0.24172185430463577" />
+        <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/layout/widget_story_item.xml" value="0.1" />
         <entry key="..\:/latihan/kotlin intermediate/story app/app/src/main/res/menu/main_menu.xml" value="0.264" />
       </map>
     </option>
