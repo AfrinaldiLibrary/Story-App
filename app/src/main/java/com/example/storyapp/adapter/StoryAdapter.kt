@@ -1,13 +1,13 @@
 package com.example.storyapp.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.ViewCompat
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.example.storyapp.R
 import com.example.storyapp.api.ListStoryItem
 import com.example.storyapp.databinding.StoryCardBinding
 import com.example.storyapp.fragments.stories.StoriesFragmentDirections
@@ -41,14 +41,13 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.ListViewHolder>() {
                 tvDate.text = stories.createdAt.withDateFormat()
                 Glide.with(binding.root)
                     .load(stories.photoUrl)
+                    .apply(
+                        RequestOptions()
+                        .placeholder(R.drawable.ic_image)
+                    )
                     .centerCrop()
                     .into(ivPhoto)
             }
-
-            Log.e("transitionStory", binding.tvName.transitionName)
-            Log.e("transitionStory", binding.tvDate.transitionName)
-            Log.e("transitionStory", binding.tvDesc.transitionName)
-            Log.e("transitionStory", binding.ivPhoto.transitionName)
 
             val toDetailFragment = StoriesFragmentDirections.actionStoriesFragmentToDetailFragment()
             toDetailFragment.name = stories.name
@@ -58,8 +57,8 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.ListViewHolder>() {
 
             val extras = FragmentNavigatorExtras(
                 Pair(binding.ivPhoto, "photo"),
-                Pair(binding.tvDate, "date"),
-                Pair(binding.tvName, "name"),
+                Pair(binding.tvDate, "name"),
+                Pair(binding.tvName, "date"),
                 Pair(binding.tvDesc, "desc")
             )
 
@@ -69,4 +68,6 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.ListViewHolder>() {
             }
         }
     }
+
+
 }

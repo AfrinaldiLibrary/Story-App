@@ -3,8 +3,6 @@ package com.example.storyapp.fragments.stories
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
-import android.transition.ChangeBounds
-import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.doOnPreDraw
@@ -97,16 +95,6 @@ class StoriesFragment : Fragment() {
         binding.apply {
             rvStory.setHasFixedSize(true)
             rvStory.adapter = adapter
-//            adapter.setOnItemClickCallback(object: StoryAdapter.OnItemClickCallback{
-//                override fun onItemClick(stories: ListStoryItem) {
-//                    val toDetailFragment = StoriesFragmentDirections.actionStoriesFragmentToDetailFragment()
-//                    toDetailFragment.name = stories.name
-//                    toDetailFragment.date = stories.createdAt
-//                    toDetailFragment.description = stories.description
-//                    toDetailFragment.photo = stories.photoUrl
-//                    view?.findNavController()?.navigate(toDetailFragment)
-//                }
-//            })
         }
     }
 
