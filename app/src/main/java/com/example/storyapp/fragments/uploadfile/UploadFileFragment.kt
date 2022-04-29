@@ -156,6 +156,11 @@ class UploadFileFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     companion object {
         const val ADD_RESULT = "add_result"
 

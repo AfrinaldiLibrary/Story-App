@@ -135,4 +135,8 @@ class RegisterFragment : Fragment() {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

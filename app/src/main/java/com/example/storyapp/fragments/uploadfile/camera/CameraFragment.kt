@@ -132,6 +132,7 @@ class CameraFragment : Fragment() {
             )
         }
         (activity as AppCompatActivity).supportActionBar?.show()
+        _binding = null
     }
 
     private fun hideSystemUI() {

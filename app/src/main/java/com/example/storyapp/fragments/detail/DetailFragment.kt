@@ -31,19 +31,20 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.detail_page)
-
         showDetails()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val animation = AutoTransition()
-        animation.duration = 300
-        sharedElementEnterTransition = animation
-        sharedElementReturnTransition = animation
+        sharedElementEnterTransition = ChangeBounds()
     }
 
     private fun showDetails() {
+        binding.tvName.transitionName = args.name
+        binding.tvDate.transitionName = args.date
+        binding.tvDesc.transitionName = args.desc
+        binding.ivPhoto.transitionName = args.photo
+
         binding.tvName.text = args.name
         binding.tvDate.text = args.date.withDateFormat()
         binding.tvDesc.text = args.desc
