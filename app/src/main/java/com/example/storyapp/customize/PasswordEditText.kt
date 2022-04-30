@@ -2,13 +2,14 @@ package com.example.storyapp.customize
 
 import android.content.Context
 import android.graphics.Canvas
+import android.text.Editable
+import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
-import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import com.example.storyapp.R
 
-class PasswordEditText : AppCompatEditText, View.OnFocusChangeListener {
+class PasswordEditText : AppCompatEditText{
     constructor(context: Context) : super(context) {
         init()
     }
@@ -20,20 +21,27 @@ class PasswordEditText : AppCompatEditText, View.OnFocusChangeListener {
     }
 
     private fun init(){
-        onFocusChangeListener = this
+        addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (!text.isNullOrEmpty() && text!!.length < 6){
+                    error = context.getString(R.string.invalid_password)
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        })
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         hint = context.getString(R.string.password)
         transformationMethod = PasswordTransformationMethod.getInstance()
-    }
-
-    override fun onFocusChange(v: View?, hasFocus: Boolean) {
-        if (!hasFocus){
-            if (!text.isNullOrEmpty() && text!!.length < 6){
-                error = context.getString(R.string.invalid_password)
-            }
-        }
     }
 }

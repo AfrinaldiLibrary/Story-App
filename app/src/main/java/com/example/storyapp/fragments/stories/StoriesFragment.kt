@@ -151,11 +151,6 @@ class StoriesFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     private fun init() {
         prefManager = PrefManager(requireContext())
     }

@@ -15,7 +15,6 @@
 
         <ImageView
             android:id="@+id/iv_photo"
-            android:transitionName="photo"
             android:layout_width="match_parent"
             android:layout_height="194dp"
             android:scaleType="centerCrop"
@@ -31,7 +30,6 @@
 
             <TextView
                 android:id="@+id/tv_name"
-                android:transitionName="name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
@@ -41,7 +39,6 @@
                 />
             <TextView
                 android:id="@+id/tv_desc"
-                android:transitionName="desc"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="8dp"
@@ -53,7 +50,6 @@
                 />
             <TextView
                 android:id="@+id/tv_date"
-                android:transitionName="date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
