@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.example.storyapp.R
 import com.example.storyapp.activities.LoginActivity
+import com.example.storyapp.adapter.LoadingStateAdapter
 import com.example.storyapp.adapter.StoryAdapter
 import com.example.storyapp.api.ListStoryItem
 import com.example.storyapp.data.PrefManager
@@ -28,7 +29,9 @@ class StoriesFragment : Fragment() {
         StoryAdapter()
     }
 
-    private val storiesViewModel: StoriesViewModel by viewModels()
+    private val storiesViewModel: StoriesViewModel by viewModels{
+        ViewModelFactory(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,8 +49,28 @@ class StoriesFragment : Fragment() {
         setHasOptionsMenu(true)
         init()
         checkLogin()
-        getStories()
+        getData()
+        showStories()
         uploadButton()
+    }
+
+    private fun getData() {
+        showProgressBar(true)
+        postponeEnterTransition()
+        val token = prefManager.getToken().toString()
+        storiesViewModel.showStories(token).observe(viewLifecycleOwner){
+            if (it != null){
+                showProgressBar(false)
+                adapter.submitData(lifecycle, it)
+            } else{
+                showProgressBar(false)
+                Snackbar.make(binding.root, R.string.data_failed, Snackbar.LENGTH_SHORT).show()
+            }
+        }
+
+        view?.doOnPreDraw {
+            startPostponedEnterTransition()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -69,38 +92,21 @@ class StoriesFragment : Fragment() {
             R.id.menu_setting -> {
                 startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
             }
+            R.id.menu_map -> {
+                view?.findNavController()?.navigate(R.id.action_storiesFragment_to_mapFragment)
+            }
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun getStories() {
-        postponeEnterTransition()
-        val token = prefManager.getToken().toString()
-        storiesViewModel.showStories(token)
-        storiesViewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
-            if (isSuccess) {
-                storiesViewModel.stories.observe(viewLifecycleOwner) {
-                    if (it != null) {
-                        adapter.setList(it)
-                        showStories()
-                    }
-                }
-            } else Snackbar.make(binding.root, R.string.data_failed, Snackbar.LENGTH_SHORT).show()
-        }
-
-        view?.doOnPreDraw {
-            startPostponedEnterTransition()
-        }
-
-        storiesViewModel.isLoading.observe(viewLifecycleOwner) {
-            showProgressBar(it)
-        }
-    }
-
     private fun showStories() {
+        binding.rvStory.adapter = adapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                adapter.retry()
+            }
+        )
         binding.apply {
             rvStory.setHasFixedSize(true)
-            rvStory.adapter = adapter
             adapter.setOnItemClickCallback(object : StoryAdapter.OnItemClickCallback {
                 override fun onItemClick(stories: ListStoryItem, storyCard: StoryCardBinding) {
                     val extras = FragmentNavigatorExtras(
@@ -153,5 +159,10 @@ class StoriesFragment : Fragment() {
 
     private fun init() {
         prefManager = PrefManager(requireContext())
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

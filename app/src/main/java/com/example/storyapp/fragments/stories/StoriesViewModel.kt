@@ -1,56 +1,26 @@
 package com.example.storyapp.fragments.stories
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.example.storyapp.api.ApiConfig
-import com.example.storyapp.api.DicodingStoryResponse
+import android.content.Context
+import androidx.lifecycle.*
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.example.storyapp.api.ListStoryItem
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.storyapp.data.StoriesRepository
+import com.example.storyapp.di.Injection
 
-class StoriesViewModel : ViewModel() {
-    private val _stories = MutableLiveData<List<ListStoryItem>>()
-    val stories: LiveData<List<ListStoryItem>> = _stories
+class StoriesViewModel(private val storiesRepository: StoriesRepository) : ViewModel() {
+    fun showStories(token: String): LiveData<PagingData<ListStoryItem>>{
+        return storiesRepository.getAllStories(token).cachedIn(viewModelScope)
+    }
+}
 
-    private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading: LiveData<Boolean> = _isLoading
-
-    private val _isSuccess = MutableLiveData<Boolean>()
-    val isSuccess : LiveData<Boolean> = _isSuccess
-
-    fun showStories(token: String) {
-        _isLoading.postValue(true)
-        val client = ApiConfig.getApiService().getAllStories("Bearer $token")
-        client.enqueue(object : Callback<DicodingStoryResponse> {
-            override fun onResponse(
-                call: Call<DicodingStoryResponse>,
-                response: Response<DicodingStoryResponse>
-            ) {
-                _isLoading.postValue(false)
-                if (response.isSuccessful) {
-                    if (response.body() != null) {
-                        Log.e(TAG, "data tersedia")
-                        _isSuccess.postValue(true)
-                        _stories.postValue(response.body()?.listStory)
-                    } else{
-                        _isSuccess.postValue(false)
-                    }
-                } else {
-                    _isSuccess.postValue(false)
-                }
-            }
-
-            override fun onFailure(call: Call<DicodingStoryResponse>, t: Throwable) {
-                Log.e(TAG, "onFailure: ${t.message}")
-                _isSuccess.postValue(false)
-            }
-        })
+class ViewModelFactory(private val ctx : Context) : ViewModelProvider.Factory{
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(StoriesViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return StoriesViewModel(Injection.provideRepository(ctx)) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 
-    companion object {
-        const val TAG = "StoriesViewModel"
-    }
 }

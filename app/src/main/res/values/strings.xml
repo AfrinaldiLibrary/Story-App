@@ -21,7 +21,7 @@
     <string name="login_fail">Login failed, check email/password</string>
     <string name="fab">fab</string>
     <string name="not_grant">permission not granted</string>
-    <string name="no_image">Image cannot be empty</string>
+    <string name="must_be_filled">image and description are required</string>
     <string name="camera_x">Camera</string>
     <string name="gallery">Gallery</string>
     <string name="upload">Upload</string>
@@ -30,4 +30,6 @@
     <string name="description">Enter a description..</string>
     <string name="title_description">What are you thinking about?</string>
     <string name="setting">Setting</string>
+    <string name="retry">Retry</string>
+    <string name="map">Map</string>
 </resources>

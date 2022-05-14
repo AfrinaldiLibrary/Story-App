@@ -2,6 +2,8 @@ package com.example.storyapp.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -9,18 +11,10 @@ import com.example.storyapp.R
 import com.example.storyapp.api.ListStoryItem
 import com.example.storyapp.databinding.StoryCardBinding
 import com.example.storyapp.helper.withDateFormat
-import kotlin.collections.ArrayList
 
-class StoryAdapter : RecyclerView.Adapter<StoryAdapter.ListViewHolder>() {
-    private val list = ArrayList<ListStoryItem>()
+class StoryAdapter : PagingDataAdapter<ListStoryItem, StoryAdapter.ListViewHolder>(DIFF_CALLBACK) {
 
     private lateinit var onItemClickCallback: OnItemClickCallback
-
-
-    fun setList(stories: List<ListStoryItem>){
-        list.clear()
-        list.addAll(stories)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val binding = StoryCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -28,13 +22,15 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.ListViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        holder.bind(list[position])
+        val stories = getItem(position)
+        if (stories != null) {
+            holder.bind(stories)
+        }
+
         holder.itemView.setOnClickListener{
-            onItemClickCallback.onItemClick(list[position], holder.binding)
+            onItemClickCallback.onItemClick(stories!!, holder.binding)
         }
     }
-
-    override fun getItemCount() = list.size
 
     inner class ListViewHolder(val binding: StoryCardBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(stories : ListStoryItem){
@@ -46,7 +42,7 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.ListViewHolder>() {
                     .load(stories.photoUrl)
                     .apply(
                         RequestOptions()
-                        .placeholder(R.drawable.ic_image)
+                            .placeholder(R.drawable.ic_image)
                     )
                     .centerCrop()
                     .into(ivPhoto)
@@ -65,5 +61,17 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.ListViewHolder>() {
 
     interface OnItemClickCallback{
         fun onItemClick(stories : ListStoryItem, storyCard: StoryCardBinding)
+    }
+
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ListStoryItem>() {
+            override fun areItemsTheSame(oldItem: ListStoryItem, newItem: ListStoryItem): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(oldItem: ListStoryItem, newItem: ListStoryItem): Boolean {
+                return oldItem.id == newItem.id
+            }
+        }
     }
 }

@@ -1,13 +1,11 @@
 package com.example.storyapp.fragments.detail
 
-import android.content.Context
 import android.os.Bundle
 import android.transition.*
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -60,26 +58,5 @@ class DetailFragment : Fragment() {
             )
             .centerCrop()
             .into(binding.ivPhoto)
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        val callback: OnBackPressedCallback =
-            object : OnBackPressedCallback(true)
-            {
-                override fun handleOnBackPressed() {
-                    // Leave empty do disable back press or
-                    // write your code which you want
-                }
-            }
-        requireActivity().onBackPressedDispatcher.addCallback(
-            this,
-            callback
-        )
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

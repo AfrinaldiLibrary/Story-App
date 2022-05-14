@@ -22,7 +22,7 @@
     <string name="login_fail">Login gagal, periksa email/password</string>
     <string name="fab">fab</string>
     <string name="not_grant">Tidak mendapat permission</string>
-    <string name="no_image">Gambar tidak boleh kosong</string>
+    <string name="must_be_filled">gambar dan deskripsi wajib diisi</string>
     <string name="camera_x">Kamera</string>
     <string name="gallery">Gallery</string>
     <string name="upload">Unggah</string>
@@ -31,4 +31,6 @@
     <string name="description">Masukkan deskripsi..</string>
     <string name="title_description">Apa yang kamu pikirkan?</string>
     <string name="setting">Pengaturan</string>
+    <string name="retry">Coba Lagi</string>
+    <string name="map">Map</string>
 </resources>

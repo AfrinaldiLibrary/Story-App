@@ -93,10 +93,10 @@ class UploadFileFragment : Fragment() {
 
     private fun uploadImage() {
         val token = prefManager.getToken().toString()
-        if (getFile != null){
+        val description = binding.etDesc.text.toString()
+        if (getFile != null && description.isNotEmpty()){
             val file = reduceFileImage(getFile as File)
             val imageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
-            val description = binding.etDesc.text.toString()
             val imageMultipart = MultipartBody.Part.createFormData(
                 "photo",
                 file.name,
@@ -116,7 +116,7 @@ class UploadFileFragment : Fragment() {
             viewModel.isLoading.observe(viewLifecycleOwner){
                 showProgressBar(it)
             }
-        } else Snackbar.make(binding.root, R.string.no_image, Snackbar.LENGTH_SHORT).show()
+        } else Snackbar.make(binding.root, R.string.must_be_filled, Snackbar.LENGTH_SHORT).show()
     }
 
     private fun startGallery() {

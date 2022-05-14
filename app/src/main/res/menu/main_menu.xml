@@ -9,4 +9,9 @@
         android:id="@+id/menu_logout"
         android:title="@string/logout"
         app:showAsAction="collapseActionView"/>
+    <item
+        android:id="@+id/menu_map"
+        android:title="@string/map"
+        android:icon="@drawable/ic_map"
+        app:showAsAction="ifRoom"/>
 </menu>

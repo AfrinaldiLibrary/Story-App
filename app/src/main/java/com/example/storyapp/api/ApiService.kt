@@ -21,9 +21,11 @@ interface ApiService {
     ): Call<Login>
 
     @GET("stories")
-    fun getAllStories(
-        @Header("Authorization") token: String
-    ): Call<DicodingStoryResponse>
+    suspend fun getAllStories(
+        @Header("Authorization") token: String,
+        @Query("page") page: Int,
+        @Query("size") size: Int
+    ): DicodingStoryResponse
 
     @Multipart
     @POST("stories")
@@ -32,4 +34,10 @@ interface ApiService {
         @Part file: MultipartBody.Part,
         @Part("description") description: String
     ): Call<UploadResponse>
+
+    @GET("stories")
+    fun getStoryLocation(
+        @Header("Authorization") token: String,
+        @Query("location") location: Int = 1
+    ): Call<DicodingStoryResponse>
 }
